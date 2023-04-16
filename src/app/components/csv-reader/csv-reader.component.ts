@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'app-csv-reader',
@@ -11,11 +12,22 @@ export class CsvReaderComponent implements OnInit {
   emailAddresses: string[] = [];
   csvData: string[][] = [];
   pinCodes: string[] = [];
+  recentFiles: string[] = [];
 
-  constructor() { }
+
+  constructor(private localStorage: Storage) { }
+
 
   ngOnInit(): void {
+    const storedFiles = this.localStorage.getItem('recentFiles');
+    if (storedFiles) {
+      this.recentFiles = JSON.parse(storedFiles);
+      console.log("Localstorage: " + this.recentFiles);
+    }else{
+      console.log("No Localstorage!");
+    }
   }
+  
 
   fileUploadListener($event: any): void {
     const files = $event.srcElement.files;
@@ -27,6 +39,10 @@ export class CsvReaderComponent implements OnInit {
         const content = fileReader.result as string;
         this.csvContent = content;
         this.fileUploaded = true;
+
+        const filename = files[0].name;
+        this.recentFiles.push(filename);
+        this.localStorage.setItem('recentFiles', JSON.stringify(this.recentFiles));
 
         this.emailAddresses = this.findEmailAddresses(content);
         this.csvData = this.csvToArray(content);

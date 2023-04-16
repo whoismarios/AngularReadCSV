@@ -6,6 +6,12 @@
         <h3>CSV file contents:</h3>
         <pre>{{ csvContent }}</pre>
       </div>
+      <div *ngIf="recentFiles.length > 0" class="my-3">
+        <h3>Recently uploaded files:</h3>
+        <ul class="list-group">
+          <li *ngFor="let filename of recentFiles" class="list-group-item">{{ filename }}</li>
+        </ul>
+      </div>
       
       <div class="mailpin">
         <div *ngIf="emailAddresses.length > 0" class="my-3">
