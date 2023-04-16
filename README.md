@@ -4,22 +4,22 @@ This project reads data from a .csv file
 
 ## Getting Started
 
-Clone the project into your folder
+### Clone the project into your folder
 ```bash
 git clone https://github.com/whoismarios/AngularReadCSV.git
 ```
 
-Change the directory
+### Change the directory
 ```bash
 cd AngularReadCSV
 ```
 
-Install all dependencies
+### Install all dependencies
 ```bash
 npm install
 ```
 
-Run the dev server and open the browser at http://localhost:4200
+### Run the dev server and open the browser at http://localhost:4200
 ```bash
 ng serve --open
 ```
