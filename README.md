@@ -1,4 +1,4 @@
-# ReadCSV
+# ReadCSV (Angular PWA)
 
 This project reads data from a .csv file
 
@@ -28,3 +28,4 @@ ng serve --open
 I also provided some fake data inside the 'Fake Data' folder.
 You can use of course your own .csv file
 
+You can still use the Application even when you stop the server.
