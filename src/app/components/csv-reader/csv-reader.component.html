@@ -1,0 +1,47 @@
+<div class="container my-5">
+    <h3>CSV-Reader</h3>
+    <div class="my-3">
+      <input type="file" class="form-control-file" (change)="fileUploadListener($event)" />
+      <div *ngIf="fileUploaded" class="my-3">
+        <h3>CSV file contents:</h3>
+        <pre>{{ csvContent }}</pre>
+      </div>
+      
+      <div class="mailpin">
+        <div *ngIf="emailAddresses.length > 0" class="my-3">
+            <h3>Email addresses:</h3>
+            <ul class="list-group">
+            <li *ngFor="let email of emailAddresses" class="list-group-item">{{ email }}</li>
+            </ul>
+        </div>
+    
+        <div *ngIf="pinCodes.length > 0" class="my-3">
+            <h3>PIN codes:</h3>
+            <ul class="list-group">
+            <li *ngFor="let pin of pinCodes" class="list-group-item">{{ pin }}</li>
+            </ul>
+        </div>
+    </div>
+      </div>
+        
+  
+      <div *ngIf="csvData.length > 0" class="my-3">
+        <h3>CSV data:</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th *ngFor="let header of csvData[0] | keyvalue" class="scope-col">{{ header.key }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let row of csvData">
+              <td *ngFor="let value of row | keyvalue">{{ value.value }}</td>
+            </tr>
+            <tr><td attr.colspan="{{ csvData[0].length }}"><br></td></tr>
+
+          </tbody>
+        </table>
+      </div>
+      
+  </div>
+  
