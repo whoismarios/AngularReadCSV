@@ -9,6 +9,11 @@ This project reads data from a .csv file
 git clone https://github.com/whoismarios/AngularReadCSV.git
 ```
 
+### Make sure you have the Angular CLI installed
+```bash
+npm install -g @angular/cli
+```
+
 ### Change the directory
 ```bash
 cd AngularReadCSV
