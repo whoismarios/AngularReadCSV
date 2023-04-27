@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: 'app-chart-component',
@@ -7,13 +7,17 @@ import { Component } from "@angular/core";
 })
 
 export class ChartComponent {
+
+  //Pass the two dimensional array as input in html component (props)
+  @Input() chartData: string[][]=[];
   
-  public lineChartData = [    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' },
-    { data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C' }
+  public lineChartData = [    { data: [65, 59, 80, 81, 56, 55, 40, 50,12,70,89,62], label: 'Series A' },
+    { data: [28, 48, 40, 19, 86, 27, 90, 85, 64, 29,12, 95], label: 'Series B' },
+    { data: [18, 48, 77, 9, 100, 27, 40, 13, 43, 74, 29, 80], label: 'Series C' }
   ];
 
-  public lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 
   public lineChartOptions = {
     responsive: true,

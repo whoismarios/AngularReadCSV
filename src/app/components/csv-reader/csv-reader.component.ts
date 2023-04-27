@@ -9,9 +9,9 @@ import { LocalStorageService } from 'angular-2-local-storage';
 export class CsvReaderComponent implements OnInit {
   csvContent: string = '';
   fileUploaded: boolean = false;
-  emailAddresses: string[] = [];
+  //emailAddresses: string[] = [];
   csvData: string[][] = [];
-  pinCodes: string[] = [];
+  //pinCodes: string[] = [];
   recentFiles: string[] = [];
 
 
@@ -31,9 +31,13 @@ export class CsvReaderComponent implements OnInit {
   deleteLocalStorage() {
     localStorage.clear();
     this.recentFiles = [];
-    this.emailAddresses = [];
-    this.pinCodes = [];
+    //this.emailAddresses = [];
+    //this.pinCodes = [];
   }
+
+  /*saveToLocalstorage(data: string[][], name: string){
+    this.localStorage.setItem(name,data);
+  }*/
   
   
 
@@ -52,20 +56,21 @@ export class CsvReaderComponent implements OnInit {
         this.recentFiles.push(filename);
         this.localStorage.setItem('recentFiles', JSON.stringify(this.recentFiles));
 
-        this.emailAddresses = this.findEmailAddresses(content);
+        //this.emailAddresses = this.findEmailAddresses(content);
         this.csvData = this.csvToArray(content);
-        this.pinCodes = this.findPinCodes(content);
+        //this.pinCodes = this.findPinCodes(content);
       };
 
       fileReader.readAsText(files[0]);
     }
   }
 
+  /**
   private findEmailAddresses(content: string): string[] {
     const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
     const matches = content.match(emailRegex);
     return matches || [];
-  }
+  } */
 
   csvToArray(text: string): string[][] {
     const lines = text.split('\n');
@@ -81,12 +86,15 @@ export class CsvReaderComponent implements OnInit {
       data.push(Object.values(obj));
     }
 
+    //this.saveToLocalstorage('test', data);
+
     return data;
   }
 
+  /** 
   private findPinCodes(content: string): string[] {
     const pinRegex = /\b\d{4}\b/g;
     const matches = content.match(pinRegex);
     return matches || [];
-  }
+  }*/
 }

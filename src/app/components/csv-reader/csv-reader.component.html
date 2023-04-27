@@ -5,10 +5,12 @@
 
       <app-chart-component></app-chart-component>
 
+      <!--  
       <div *ngIf="fileUploaded" class="my-3">
         <h3>CSV file contents:</h3>
         <pre>{{ csvContent }}</pre>
-      </div>
+      </div>-->
+      
       <div *ngIf="recentFiles.length > 0" class="my-3">
         <h3>Recently uploaded files:</h3>
         <ul class="list-group">
@@ -20,6 +22,7 @@
         <div (click)="deleteLocalStorage()" class="btn btn-danger">Delete Localstorage</div>
       </div>
       
+      <!--  
       <div class="mailpin">
         <div *ngIf="emailAddresses.length > 0" class="my-3">
             <h3>Email addresses:</h3>
@@ -34,7 +37,7 @@
             <li *ngFor="let pin of pinCodes" class="list-group-item">{{ pin }}</li>
             </ul>
         </div>
-    </div>
+    </div>-->
       </div>
         
   
