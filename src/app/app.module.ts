@@ -5,17 +5,25 @@ import { AppComponent } from './app.component';
 import { CsvReaderComponent } from './components/csv-reader/csv-reader.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { LocalStorageModule } from 'angular-2-local-storage';
+import { MatButtonModule } from '@angular/material/button';
+import { NgChartsModule } from 'ng2-charts';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartModule } from 'angular2-chartjs';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CsvReaderComponent
+    CsvReaderComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatButtonModule,
+    NgChartsModule,
+    ChartModule,
     LocalStorageModule.forRoot({
       prefix: 'my-app',
       storageType: 'localStorage'
@@ -26,6 +34,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
     })
   ],
   providers: [{ provide: Storage, useValue: localStorage }],
+  exports: [MatButtonModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

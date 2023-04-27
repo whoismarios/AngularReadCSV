@@ -2,6 +2,9 @@
     <h3>CSV-Reader</h3>
     <div class="my-3">
       <input type="file" class="form-control-file" (change)="fileUploadListener($event)" />
+
+      <app-chart-component></app-chart-component>
+
       <div *ngIf="fileUploaded" class="my-3">
         <h3>CSV file contents:</h3>
         <pre>{{ csvContent }}</pre>
