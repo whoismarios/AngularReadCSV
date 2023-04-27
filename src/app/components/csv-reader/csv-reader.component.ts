@@ -27,6 +27,14 @@ export class CsvReaderComponent implements OnInit {
       console.log("No Localstorage!");
     }
   }
+
+  deleteLocalStorage() {
+    localStorage.clear();
+    this.recentFiles = [];
+    this.emailAddresses = [];
+    this.pinCodes = [];
+  }
+  
   
 
   fileUploadListener($event: any): void {

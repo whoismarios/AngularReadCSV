@@ -12,6 +12,10 @@
           <li *ngFor="let filename of recentFiles" class="list-group-item">{{ filename }}</li>
         </ul>
       </div>
+
+      <div class="my-3">
+        <div (click)="deleteLocalStorage()" class="btn btn-danger">Delete Localstorage</div>
+      </div>
       
       <div class="mailpin">
         <div *ngIf="emailAddresses.length > 0" class="my-3">
