@@ -10,18 +10,23 @@ import * as CryptoJS from 'crypto-js';
 export class CsvReaderComponent implements OnInit {
   csvContent: string = '';
   fileUploaded: boolean = false;
+  //emailAddresses: string[] = [];
   csvData: string[][] = [];
+  //pinCodes: string[] = [];
   recentFiles: string[] = [];
 
+
   constructor(private localStorage: Storage) { }
+
 
   ngOnInit(): void {
     const storedFiles = this.localStorage.getItem('recentFiles');
 
     if (storedFiles) {
-      this.recentFiles = JSON.parse(storedFiles);
+      const decryptedFiles = CryptoJS.AES.decrypt(storedFiles, 'secret key').toString(CryptoJS.enc.Utf8);
+      this.recentFiles = JSON.parse(decryptedFiles);
       console.log("Localstorage: " + this.recentFiles);
-    } else {
+    }else{
       console.log("No Localstorage!");
     }
   }
@@ -29,7 +34,15 @@ export class CsvReaderComponent implements OnInit {
   deleteLocalStorage() {
     localStorage.clear();
     this.recentFiles = [];
+    //this.emailAddresses = [];
+    //this.pinCodes = [];
   }
+
+  /*saveToLocalstorage(data: string[][], name: string){
+    this.localStorage.setItem(name,data);
+  }*/
+  
+  
 
   fileUploadListener($event: any): void {
     const files = $event.srcElement.files;
@@ -39,20 +52,29 @@ export class CsvReaderComponent implements OnInit {
 
       fileReader.onload = (e) => {
         const content = fileReader.result as string;
-        const encryptedContent = CryptoJS.SHA256(content).toString(); // encrypt the content using SHA256
-        this.csvContent = encryptedContent;
+        this.csvContent = content;
         this.fileUploaded = true;
 
         const filename = files[0].name;
         this.recentFiles.push(filename);
-        //this.localStorage.setItem('recentFiles', JSON.stringify(this.recentFiles));
-        this.localStorage.setItem('encryptedContent', encryptedContent); // store the encrypted content in local storage
+        const encryptedFiles = CryptoJS.AES.encrypt(JSON.stringify(this.recentFiles), 'secret key').toString();
+        this.localStorage.setItem('recentFiles', encryptedFiles);
+
+        //this.emailAddresses = this.findEmailAddresses(content);
         this.csvData = this.csvToArray(content);
+        //this.pinCodes = this.findPinCodes(content);
       };
 
       fileReader.readAsText(files[0]);
     }
   }
+
+  /**
+  private findEmailAddresses(content: string): string[] {
+    const emailRegex = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
+    const matches = content.match(emailRegex);
+    return matches || [];
+  } */
 
   csvToArray(text: string): string[][] {
     const lines = text.split('\n');
@@ -68,14 +90,15 @@ export class CsvReaderComponent implements OnInit {
       data.push(Object.values(obj));
     }
 
+    //this.saveToLocalstorage('test', data);
+
     return data;
   }
 
-  getDataFromLocalStorage() {
-    const encryptedContent = this.localStorage.getItem('encryptedContent');
-    if (encryptedContent) {
-      const decryptedContent = CryptoJS.SHA256(encryptedContent).toString(CryptoJS.enc.Utf8);
-      // use the decrypted content here
-    }
-  }
+  /** 
+  private findPinCodes(content: string): string[] {
+    const pinRegex = /\b\d{4}\b/g;
+    const matches = content.match(pinRegex);
+    return matches || [];
+  }*/
 }
