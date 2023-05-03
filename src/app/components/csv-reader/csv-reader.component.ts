@@ -45,7 +45,7 @@ export class CsvReaderComponent implements OnInit {
 
         const filename = files[0].name;
         this.recentFiles.push(filename);
-        this.localStorage.setItem('recentFiles', JSON.stringify(this.recentFiles));
+        //this.localStorage.setItem('recentFiles', JSON.stringify(this.recentFiles));
         this.localStorage.setItem('encryptedContent', encryptedContent); // store the encrypted content in local storage
         this.csvData = this.csvToArray(content);
       };
