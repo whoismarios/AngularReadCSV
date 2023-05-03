@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
+import * as dotenv from 'dotenv';
+
 
 @Component({
   selector: 'app-csv-reader',
@@ -20,6 +22,14 @@ export class CsvReaderComponent implements OnInit {
 
   ngOnInit(): void {
     const storedFiles = this.localStorage.getItem('recentFiles');
+
+    const secret = process.env['GEHEIMNIS_TEST'];
+        //const secret = process.env.GEHEIMNIS_TEST
+
+      console.log(secret)
+    
+    //dotenv.config();
+
     if (storedFiles) {
       this.recentFiles = JSON.parse(storedFiles);
       console.log("Localstorage: " + this.recentFiles);
@@ -59,6 +69,10 @@ export class CsvReaderComponent implements OnInit {
         //this.emailAddresses = this.findEmailAddresses(content);
         this.csvData = this.csvToArray(content);
         //this.pinCodes = this.findPinCodes(content);
+        const secret = process.env['GEHEIMNIS_TEST'];
+        //const secret = process.env.GEHEIMNIS_TEST
+
+        console.log(secret)
       };
 
       fileReader.readAsText(files[0]);
