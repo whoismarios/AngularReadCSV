@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ReadCSV';
+  isLoggedIn = false;
+
+  onLoginSuccess() {
+    this.isLoggedIn = true;
+  }
 }

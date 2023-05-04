@@ -1,1 +1,7 @@
-<app-csv-reader></app-csv-reader>
+<div>
+    <app-login *ngIf="!isLoggedIn" (loginSuccess)="onLoginSuccess()"></app-login>
+    <div *ngIf="isLoggedIn">
+      <app-csv-reader></app-csv-reader>
+    </div>
+  </div>
+  

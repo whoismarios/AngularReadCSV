@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { NgChartsModule } from 'ng2-charts';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartModule } from 'angular2-chartjs';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,7 +18,8 @@ import { ChartModule } from 'angular2-chartjs';
   declarations: [
     AppComponent,
     CsvReaderComponent,
-    ChartComponent
+    ChartComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import { ChartModule } from 'angular2-chartjs';
     MatButtonModule,
     NgChartsModule,
     ChartModule,
+    FormsModule,
     LocalStorageModule.forRoot({
       prefix: 'my-app',
       storageType: 'localStorage'
