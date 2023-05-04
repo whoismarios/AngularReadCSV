@@ -12,4 +12,8 @@ export class AppComponent {
   onLoginSuccess() {
     this.isLoggedIn = true;
   }
+
+  logout() {
+    this.isLoggedIn = false;
+  }
 }
