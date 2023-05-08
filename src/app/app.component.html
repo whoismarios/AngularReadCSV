@@ -1,11 +1,15 @@
 <div>
+
+    <h2 style="text-align: center;">Angular CSV Reader</h2>
+
     <div *ngIf="isLoggedIn">
         <br>
-      <button style="margin-left: 10px;" class="btn btn-primary" (click)="logout()">Logout</button>
-      <app-csv-reader></app-csv-reader>
+        <button style="margin-left: 10px;" class="btn btn-primary" (click)="logout()">Logout</button>
+        <app-csv-reader></app-csv-reader>
     </div>
+
     <div *ngIf="!isLoggedIn">
-      <app-login (loginSuccess)="onLoginSuccess()"></app-login>
+        <app-login (loginSuccess)="onLoginSuccess()"></app-login>
     </div>
-  </div>
-  
+
+</div>
